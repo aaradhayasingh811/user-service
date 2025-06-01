@@ -59,46 +59,52 @@ Authorization: Bearer <jwt_token>
   "updatedAt": "2024-05-01T15:30:00Z"
 }
 
+```
 
-2. PATCH /profile
-Update user profile details and optionally upload a new avatar image.
 
-Headers:
-Authorization: Bearer <jwt_token>
-Content-Type: multipart/form-data
-Body:
+### 2. PATCH /profile
 
-Profile fields to update (e.g., name, email)
+#### Update user profile details and optionally upload a new avatar image.
 
-avatar — image file for profile picture (optional, max size 5MB)
+* Headers:
+* Authorization: Bearer <jwt_token>
+* Content-Type: multipart/form-data
+* Body:
+* Profile fields to update (e.g., name, email)
+* avatar — image file for profile picture (optional, max size 5MB)
 
-Example cURL:curl -X PATCH http://yourdomain/api/profile \
-  -H "Authorization: Bearer <jwt_token>" \
-  -F "name=Jane Doe" \
-  -F "avatar=@/path/to/avatar.png"
-3. POST /logout
-Logs out the authenticated user by invalidating their token/session.
 
+### 3. POST /logout
+
+#### Logs out the authenticated user by invalidating their token/session.
+
+```bash
 Headers:
 Authorization: Bearer <jwt_token>
 Response:
 { "message": "Successfully logged out." }
 
-Authentication
-This service protects all sensitive routes with JWT tokens verified by the verifyToken middleware. Tokens must be included in the Authorization header.
+```
 
-File Upload
-Uses multer middleware for handling avatar uploads
+#### Authentication
 
-Stores files in the uploads/ directory
+* This service protects all sensitive routes with JWT tokens verified by the verifyToken middleware. Tokens must be included in the Authorization header.
 
-Accepts image files only (validated by MIME type)
+#### File Upload
 
-Maximum file size limit of 5 MB
+* Uses multer middleware for handling avatar uploads
 
-Filenames are prepended with a timestamp for uniqueness
+* Stores files in the uploads/ directory
 
-Usage
+* Accepts image files only (validated by MIME type)
+
+* Maximum file size limit of 5 MB
+
+* Filenames are prepended with a timestamp for uniqueness
+
+### Usage
+
+``` bash
 Clone the repository
 
 Install dependencies:
@@ -108,35 +114,42 @@ Configure environment variables (e.g., JWT secret, upload path)
 Start the service locally:
 npm run start
 
-Deployment
-This microservice can be deployed using:
+```
 
-Docker: Containerized for easy deployment and scalability. Use the provided Dockerfile to build and run the container.
+### Deployment
 
-Render: Ready for deployment on Render.com for managed cloud hosting with CI/CD integration.
+- This microservice can be deployed using:
 
-Error Handling
-Unauthorized access returns 401 Unauthorized
+#### Docker: Containerized for easy deployment and scalability. Use the provided Dockerfile to build and run the container.
 
-Invalid file uploads return descriptive error messages
+#### Render: Ready for deployment on Render.com for managed cloud hosting with CI/CD integration.
 
-Input validation errors return 400 Bad Request
+#### Error Handling
 
-Environment Variables
+* Unauthorized access returns 401 Unauthorized
+
+* Invalid file uploads return descriptive error messages
+
+* Input validation errors return 400 Bad Request
+
+### Environment Variables
+
+```bash
 JWT_SECRET - Secret key to sign and verify JWT tokens
 
 UPLOAD_DIR - Directory path to store uploaded avatar images (default: uploads/)
 
 Other service-specific configuration
+```
 
-Contact & Support
-For issues or feature requests, please open an issue on the repository or contact the maintainer.
+### Contact & Support
+- For issues or feature requests, please open an issue on the repository or contact the maintainer.
 
-This service is designed to be a robust part of a larger microservices ecosystem, easily integrated and deployed with modern cloud and container technologies.
+- This service is designed to be a robust part of a larger microservices ecosystem, easily integrated and deployed with modern cloud and container technologies.
 
 ## Docker Setup
 
-This service is containerized with Docker for easy deployment.
+-This service is containerized with Docker for easy deployment.
 
 ### Dockerfile
 
@@ -164,6 +177,8 @@ EXPOSE 3000
 
 # Start the app
 CMD ["node", "server.js"]## Docker Setup
+
+```
 
 This service is containerized with Docker for easy deployment.
 
@@ -194,6 +209,7 @@ EXPOSE 3000
 # Start the app
 CMD ["node", "server.js"]
 
+```
 
 # Build Docker image
 docker build -t user-service .
