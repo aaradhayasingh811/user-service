@@ -7,9 +7,9 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: 'https://architechx.netlify.app' || "http://localhost:5173",
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization']
+    allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
 // Use only express.json() and express.urlencoded()
